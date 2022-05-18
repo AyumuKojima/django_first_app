@@ -1,11 +1,14 @@
 from django.shortcuts import render, get_object_or_404
-
+from django.views import generic
 # Create your views here.
 from .models import Tweet
 
-def index(request):
-    tweets = Tweet.objects.order_by('-pub_date')
-    return render(request, 'tweets/index.html', { 'tweets': tweets })
+class IndexView(generic.ListView):
+    template_name = 'tweets/index.html'
+    context_object_name = 'tweets'
+
+    def get_queryset(self):
+        return Tweet.objects.order_by('-pub_date')
 
 def detail(request, tweet_id):
     tweet = get_object_or_404(Tweet, pk=tweet_id)
