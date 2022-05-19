@@ -14,7 +14,7 @@
     <div class="a_container">
         <div class="contents">
             <div class="post_title"><p>編集フォーム</p></div>
-            <form action="{% url 'tweets:update' %}" method="post">
+            <form action="{% url 'tweets:update' tweet.id %}" method="post">
                 {% csrf_token %}
                 {% if error_messages %}
                     <ul class="error_messages">
@@ -39,6 +39,9 @@
                 </fieldset>
                 <div class="submit-btn centering">
                     <input class="submit" type="submit" value="編集する">
+                </div>
+                <div class="cancel-btn centering">
+                    <a class="cancel centering" href="{% url 'tweets:detail' tweet.id %}">キャンセル</a>
                 </div>
             </form>
         </div>
