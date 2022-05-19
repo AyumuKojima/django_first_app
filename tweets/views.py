@@ -57,3 +57,32 @@ def destroy(request, tweet_id):
         print('Error! Some problems are occurred.')
         return render(request, 'tweets/detail.html', { 'tweet': tweet })
 
+def update(request, tweet_id):
+    tweet = get_object_or_404(Tweet, pk=tweet_id)
+    data = request.POST
+    tweet.name = data['name']
+    tweet.image = data['image']
+    tweet.text = data['text']
+    error_messages = []
+    if data['name'] == '':
+        error_message = "Name can't be blank"
+        error_messages.append(error_message)
+
+    if data['image'] == '':
+        error_message = "Image URL can't be blank"
+        error_messages.append(error_message)
+    
+    if data['text'] == '':
+        error_message = "Text can't be blank"
+        error_messages.append(error_message)
+    
+    if len(error_messages) != 0:
+        return render(request, 'tweets/edit.html', { 'tweet': tweet, 'error_messages': error_messages })
+    
+    try:
+        tweet.save()
+        print("Tweet <text: " + str(tweet) + "> is updated successfully!")
+        return render(request, 'tweets/detail.html', { 'tweet': tweet })
+    except:
+        print("Error! Some problems are occurred!")
+        return HttpResponseRedirect(reverse('tweets:detail'))
