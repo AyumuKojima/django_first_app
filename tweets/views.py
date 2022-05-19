@@ -17,6 +17,10 @@ class DetailView(generic.DetailView):
     model = Tweet
     template_name = 'tweets/detail.html'
 
+class EditView(generic.DetailView):
+    model = Tweet
+    template_name = 'tweets/edit.html'
+
 def post(request):
     return render(request, 'tweets/post.html')
 
@@ -52,3 +56,4 @@ def destroy(request, tweet_id):
     except:
         print('Error! Some problems are occurred.')
         return render(request, 'tweets/detail.html', { 'tweet': tweet })
+
