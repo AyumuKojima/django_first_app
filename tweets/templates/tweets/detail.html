@@ -5,7 +5,7 @@
 <div class="header">
     <a class="header-logo centering" href="{% url 'tweets:index' %}">Photo Tweet</a>
     <div class="header-menu">
-        <a class="to-submit-page centering" href="#">投稿する</a>
+        <a class="to-submit-page centering" href="{% url 'tweets:post' %}">投稿する</a>
         <a class="to-mypage centering" href="#">マイページ</a>
         <a class="to-logout-page centering" href="#">ログアウト</a>
     </div>
@@ -16,7 +16,7 @@
             <div class="a_tweet" style="background-image: url({{tweet.image}});">
                 <div class="tweet_header">
                     <div class="tweet_btns">
-                        <a class="tweet_btn" href="#">編集</a>
+                        <a class="tweet_btn" href="{% url 'tweets:edit' tweet.id %}">編集</a>
                         <a class="tweet_btn" href="{% url 'tweets:destroy' tweet.id %}">削除</a>
                     </div>
                 </div>
