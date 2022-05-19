@@ -239,6 +239,24 @@
     background-color: rgb(113, 198, 232);
 }
 
+.cancel-btn {
+    height: 40px;
+    margin-top: 20px;
+}
+
+.cancel {
+    height: 100%;
+    width: 180px;
+    text-align: center;
+    border-radius: 5px;
+    background-color: lightgray;
+    color: white;
+}
+
+.cancel:hover {
+    background-color: grey;
+}
+
 .error_messages {
     color: red;
     text-align: center;
