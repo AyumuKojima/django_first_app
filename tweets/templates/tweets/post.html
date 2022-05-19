@@ -1,0 +1,47 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'tweets/reset.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'tweets/style.css' %}">
+
+<div class="header">
+    <a class="header-logo centering" href="{% url 'tweets:index' %}">Photo Tweet</a>
+    <div class="header-menu">
+        <a class="to-submit-page centering" href="{% url 'tweets:post' %}">投稿する</a>
+        <a class="to-mypage centering" href="#">マイページ</a>
+        <a class="to-logout-page centering" href="#">ログアウト</a>
+    </div>
+</div>
+<div class="main">
+    <div class="a_container">
+        <div class="contents">
+            <div class="post_title"><p>投稿フォーム</p></div>
+            <form action="{% url 'tweets:post' %}" method="post">
+                {% csrf_token %}
+                <fieldset class="fields">
+                    {% if error_message %}
+                        <p><strong>{{ error_message }}</strong></p>
+                    {% endif %}
+                    <div class="field">
+                        <label class="label" for="name">Name</label>
+                        <input class="name_form" type="text" name="name" id="name">
+                    </div>
+                    <div class="field">
+                        <label class="label" for="image">Image URL</label>
+                        <input class="name_form" type="text" name="image" id="image">
+                    </div>
+                    <div class="field">
+                        <label class="label" for="text">Text</label>
+                        <textarea class="text_form" name="text" id="text" rows="8"></textarea>
+                    </div>
+                </fieldset>
+                <div class="submit-btn centering">
+                    <input class="submit" type="submit" value="投稿する">
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="footer">
+        <p>
+            Copyright PicTweet 2019.
+        </p>
+    </div>
+</div>
