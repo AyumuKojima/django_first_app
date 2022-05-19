@@ -181,15 +181,15 @@
 .post_title {
     width: 300px;
     text-align: center;
-    margin-top: 30px;
+    margin: 30px;
     color: rgb(88, 189, 228);
     font-weight: bold;
     font-size: 30px;
 }
 
 .fields {
-    margin-top: 30px;
-    height: 460px;
+    margin-top: 10px;
+    height: 450px;
     width: 400px;
     display: flex;
     flex-direction: column;
@@ -237,4 +237,13 @@
 
 .submit:hover {
     background-color: rgb(113, 198, 232);
+}
+
+.error_messages {
+    color: red;
+    text-align: center;
+}
+
+.error_message {
+    margin-bottom: 5px;
 }
