@@ -13,3 +13,6 @@ class IndexView(generic.ListView):
 class DetailView(generic.DetailView):
     model = Tweet
     template_name = 'tweets/detail.html'
+
+def post(request):
+    return render(request, 'tweets/post.html')
