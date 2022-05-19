@@ -3,7 +3,7 @@
 <link rel="stylesheet" type="text/css" href="{% static 'tweets/style.css' %}">
 
 <div class="header">
-    <a class="header-logo centering" href="#">Photo Tweet</a>
+    <a class="header-logo centering" href="{% url 'tweets:index' %}">Photo Tweet</a>
     <div class="header-menu">
         <a class="to-submit-page centering" href="#">投稿する</a>
         <a class="to-mypage centering" href="#">マイページ</a>
