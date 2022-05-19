@@ -1,1 +1,38 @@
-{{ tweet }}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'tweets/reset.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'tweets/style.css' %}">
+
+<div class="header">
+    <a class="header-logo centering" href="{% url 'tweets:index' %}">Photo Tweet</a>
+    <div class="header-menu">
+        <a class="to-submit-page centering" href="#">投稿する</a>
+        <a class="to-mypage centering" href="#">マイページ</a>
+        <a class="to-logout-page centering" href="#">ログアウト</a>
+    </div>
+</div>
+<div class="main">
+    <div class="a_container">
+        <div class="contents">
+            <div class="a_tweet" style="background-image: url({{tweet.image}});">
+                <div class="tweet_header">
+                    <div class="tweet_btns">
+                        <a class="tweet_btn" href="#">編集</a>
+                        <a class="tweet_btn" href="#">削除</a>
+                    </div>
+                </div>
+                <div class="tweet_bottom">
+                    <p class="tweet_text">{{ tweet.text }}</p>
+                    <div class="tweet_name">
+                        <p class="tweet_user_name">{{ tweet.name }}</p>
+                    </div>
+                </div>
+            </div>
+            <a class="to-index-page centering" href="{% url 'tweets:index' %}">投稿一覧画面へ戻る</a>
+        </div>
+    </div>
+    <div class="footer">
+        <p>
+            Copyright PicTweet 2019.
+        </p>
+    </div>
+</div>

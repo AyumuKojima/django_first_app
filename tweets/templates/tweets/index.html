@@ -16,7 +16,7 @@
             {% for tweet in tweets %}
                 <div class="a_tweet" style="background-image: url({{tweet.image}});">
                     <div class="tweet_header">
-                        <p class="tweet_btn">詳細</p>
+                        <a class="tweet_btn" href="{% url 'tweets:detail' tweet.id %}">詳細</a>
                     </div>
                     <div class="tweet_bottom">
                         <p class="tweet_text">{{ tweet.text }}</p>

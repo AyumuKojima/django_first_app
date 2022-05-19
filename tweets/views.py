@@ -10,6 +10,6 @@ class IndexView(generic.ListView):
     def get_queryset(self):
         return Tweet.objects.order_by('-pub_date')
 
-def detail(request, tweet_id):
-    tweet = get_object_or_404(Tweet, pk=tweet_id)
-    return render(request, 'tweets/detail.html', { 'tweet': tweet })
+class DetailView(generic.DetailView):
+    model = Tweet
+    template_name = 'tweets/detail.html'
