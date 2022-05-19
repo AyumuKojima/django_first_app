@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.views import generic
 from django.utils import timezone
@@ -43,4 +43,12 @@ def create(request):
     return HttpResponseRedirect(reverse('tweets:index'))
 
 def destroy(request, tweet_id):
-    return render(request, 'tweets/index.html')
+    tweet = get_object_or_404(Tweet, pk=tweet_id)
+    try:
+        tweet.delete()
+        print("Tweet <text: '" + str(tweet) + "'> is deleted successfully!")
+        tweets = Tweet.objects.order_by('-pub_date')
+        return render(request, 'tweets/index.html', { 'tweets': tweets })
+    except:
+        print('Error! Some problems are occurred.')
+        return render(request, 'tweets/detail.html', { 'tweet': tweet })
