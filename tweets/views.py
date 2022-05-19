@@ -41,3 +41,6 @@ def create(request):
     posted_tweet = Tweet(name=data['name'], image=data['image'], text=data['text'], pub_date=timezone.now())
     posted_tweet.save()
     return HttpResponseRedirect(reverse('tweets:index'))
+
+def destroy(request, tweet_id):
+    return render(request, 'tweets/index.html')
