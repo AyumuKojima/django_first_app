@@ -17,7 +17,7 @@
                 <div class="tweet_header">
                     <div class="tweet_btns">
                         <a class="tweet_btn" href="#">編集</a>
-                        <a class="tweet_btn" href="#">削除</a>
+                        <a class="tweet_btn" href="{% url 'tweets:destroy' tweet.id %}">削除</a>
                     </div>
                 </div>
                 <div class="tweet_bottom">
