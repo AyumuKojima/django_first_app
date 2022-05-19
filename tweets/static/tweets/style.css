@@ -1,0 +1,155 @@
+.centering {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header {
+    background-color: aquamarine;
+    height: 65px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-logo {
+    height: 80%;
+    width: 200px;
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 25px;
+    margin-left: 30px;
+    border: 3px solid antiquewhite;
+    background-color: aliceblue;
+    border-radius: 10px;
+}
+
+.header-menu {
+    height: 100%;
+    width: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.to-submit-page {
+    height: 65%;
+    width: 130px;
+    border: 2px solid skyblue;
+    border-radius: 5px;
+    color: white;
+    background-color: rgb(161, 211, 231);
+}
+
+.to-mypage {
+    height: 65%;
+    width: 130px;
+    border: 2px solid skyblue;
+    border-radius: 5px;
+    color: white;
+    background-color: rgb(161, 211, 231);
+}
+
+.to-logout-page {
+    height: 65%;
+    width: 130px;
+    border: 2px solid skyblue;
+    border-radius: 5px;
+    color: white;
+    background-color: rgb(161, 211, 231);
+}
+
+.main {
+    height: calc(100% - 65px);
+    overflow: auto;
+}
+.container {
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contents {
+    height: 100%;
+    width: 1100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: beige;
+    padding: 20px 0;
+}
+
+.a_tweet {
+    color: white;
+    width: 800px;
+    height: 534px;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 20px 0;
+}
+
+.tweet_header {
+    height: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding-right: 20px;
+    padding-top: 20px;
+}
+
+.tweet_btn {
+    color: grey;
+}
+
+.tweet_btn:hover {
+    color: white;
+    cursor: pointer;
+}
+
+.tweet_bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 150px;
+}
+
+.tweet_text {
+    height: 100%;
+    width: 70%;
+    font-size: 30px;
+    font-weight: bold;
+    word-wrap: break-word;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 20px;
+}
+
+.tweet_name {
+    height: 50px;
+    width: 20%;
+    color: lightgray;
+}
+
+.tweet_user_name {
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    padding-right: 5px;
+}
+
+
+.footer {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    padding-left: 40px;
+    background-color: lightgray;
+    color: white;
+}

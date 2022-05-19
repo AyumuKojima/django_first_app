@@ -1,5 +1,36 @@
-<h1>Index View!</h1>
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'tweets/reset.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'tweets/style.css' %}">
 
-{% for tweet in tweets %}
-    <p>{{ tweet.text }}</p>
-{% endfor %}
+<div class="header">
+    <a class="header-logo centering" href="#">Photo Tweet</a>
+    <div class="header-menu">
+        <a class="to-submit-page centering" href="#">投稿する</a>
+        <a class="to-mypage centering" href="#">マイページ</a>
+        <a class="to-logout-page centering" href="#">ログアウト</a>
+    </div>
+</div>
+<div class="main">
+    <div class="container">
+        <div class="contents">
+            {% for tweet in tweets %}
+                <div class="a_tweet" style="background-image: url({{tweet.image}});">
+                    <div class="tweet_header">
+                        <p class="tweet_btn">詳細</p>
+                    </div>
+                    <div class="tweet_bottom">
+                        <p class="tweet_text">{{ tweet.text }}</p>
+                        <div class="tweet_name">
+                            <p class="tweet_user_name">{{ tweet.name }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="footer">
+        <p>
+            Copyright PicTweet 2019.
+        </p>
+    </div>
+</div>
