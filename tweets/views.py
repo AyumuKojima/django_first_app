@@ -25,24 +25,13 @@ def post(request):
     return render(request, 'tweets/post.html')
 
 def create(request):
-    data = request.POST
-    error_messages = []
-    if data['name'] == '':
-        error_message = "Name can't be blank"
-        error_messages.append(error_message)
-
-    if data['image'] == '':
-        error_message = "Image URL can't be blank"
-        error_messages.append(error_message)
-    
-    if data['text'] == '':
-        error_message = "Text can't be blank"
-        error_messages.append(error_message)
+    tweet_data = request.POST
+    error_messages = _set_error_messages(tweet_data)
     
     if len(error_messages) != 0:
         return render(request, 'tweets/post.html', { 'error_messages': error_messages })
         
-    posted_tweet = Tweet(name=data['name'], image=data['image'], text=data['text'], pub_date=timezone.now())
+    posted_tweet = Tweet(name=tweet_data['name'], image=tweet_data['image'], text=tweet_data['text'], pub_date=timezone.now())
     posted_tweet.save()
     return HttpResponseRedirect(reverse('tweets:index'))
 
@@ -59,23 +48,11 @@ def destroy(request, tweet_id):
 
 def update(request, tweet_id):
     tweet = get_object_or_404(Tweet, pk=tweet_id)
-    data = request.POST
-    tweet.name = data['name']
-    tweet.image = data['image']
-    tweet.text = data['text']
-    error_messages = []
-    if data['name'] == '':
-        error_message = "Name can't be blank"
-        error_messages.append(error_message)
-
-    if data['image'] == '':
-        error_message = "Image URL can't be blank"
-        error_messages.append(error_message)
-    
-    if data['text'] == '':
-        error_message = "Text can't be blank"
-        error_messages.append(error_message)
-    
+    tweet_data = request.POST
+    tweet.name = tweet_data['name']
+    tweet.image = tweet_data['image']
+    tweet.text = tweet_data['text']
+    error_messages = _set_error_messages(tweet_data)
     if len(error_messages) != 0:
         return render(request, 'tweets/edit.html', { 'tweet': tweet, 'error_messages': error_messages })
     
@@ -86,3 +63,20 @@ def update(request, tweet_id):
     except:
         print("Error! Some problems are occurred!")
         return HttpResponseRedirect(reverse('tweets:detail'))
+
+
+def _set_error_messages(tweet_data):
+    error_messages = []
+    if tweet_data['name'] == '':
+        error_message = "Name can't be blank"
+        error_messages.append(error_message)
+
+    if tweet_data['image'] == '':
+        error_message = "Image URL can't be blank"
+        error_messages.append(error_message)
+    
+    if tweet_data['text'] == '':
+        error_message = "Text can't be blank"
+        error_messages.append(error_message)
+    
+    return error_messages
