@@ -26,3 +26,14 @@ def log_in(request):
     else:
         print("Something went wrong.")
         return render(request, 'accounts/sign_in.html')
+
+def sign_up(request):
+    return render(request, 'accounts/sign_up.html')
+
+def register(request):
+    username = request.POST['username']
+    email = request.POST['email']
+    password = request.POST['password']
+    user = User.objects.create_user(username, email, password)
+    login(request, user)
+    return HttpResponseRedirect(reverse('tweets:index'))
