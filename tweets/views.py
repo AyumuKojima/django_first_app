@@ -5,19 +5,19 @@ from django.utils import timezone
 from django.urls import reverse
 # Create your views here.
 from .models import Tweet
+from django.contrib.auth.models import User
 
 def index(request):
     tweets = Tweet.objects.order_by('-pub_date')
-    print(request.user)
     return render(request, 'tweets/index.html', {'tweets': tweets, 'user': request.user})
 
-class DetailView(generic.DetailView):
-    model = Tweet
-    template_name = 'tweets/detail.html'
+def detail(request, tweet_id):
+    tweet = Tweet.objects.get(id=tweet_id)
+    return render(request, 'tweets/detail.html', {'tweet': tweet, 'user': request.user})
 
-class EditView(generic.DetailView):
-    model = Tweet
-    template_name = 'tweets/edit.html'
+def edit(request, tweet_id):
+    tweet = Tweet.objects.get(id=tweet_id)
+    return render(request, 'tweets/edit.html', {'tweet': tweet})
 
 def post(request):
     return render(request, 'tweets/post.html')
@@ -60,6 +60,11 @@ def update(request, tweet_id):
     except:
         print("Error! Some problems are occurred!")
         return HttpResponseRedirect(reverse('tweets:detail'))
+
+def show(request, user_id):
+    a_user = User.objects.get(id=user_id)
+    tweets = a_user.tweet_set.order_by('-pub_date')
+    return render(request, 'tweets/index.html', {'tweets': tweets, 'user': request.user, 'name': a_user.username})
 
 
 def _set_error_messages(tweet_data):

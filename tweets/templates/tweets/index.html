@@ -9,7 +9,7 @@
     {% endif %}
     <div class="header-menu">
         {% if user.is_authenticated %}
-            <a class="to-mypage centering" href="#">{{user.username}}</a>
+            <a class="to-mypage centering" href="{% url 'tweets:show' user.id %}">{{user.username}}</a>
             <a class="to-logout-page centering" href="{% url 'accounts:sign_out' %}">ログアウト</a>
         {% else %}
             <a class="to-signup-page centering" href="{% url 'accounts:sign_up' %}">新規登録</a>
@@ -21,6 +21,9 @@
     {% if tweets.count < 2 %}
         <div class="a_container">
             <div class="contents">
+                {% if name %}
+                    {{ name }}さんの投稿一覧
+                {% endif %}
                 {% for tweet in tweets %}
                     <div class="a_tweet" style="background-image: url({{tweet.image}});">
                         <div class="tweet_header">
@@ -29,7 +32,7 @@
                         <div class="tweet_bottom">
                             <p class="tweet_text">{{ tweet.text }}</p>
                             <div class="tweet_name">
-                                <p class="tweet_user_name">{{ tweet.user.username }}</p>
+                                <a class="tweet_user_name" href="{% url 'tweets:show' tweet.user.id %}">{{ tweet.user.username }}</a>
                             </div>
                         </div>
                     </div>
@@ -39,6 +42,9 @@
     {% else %}
         <div class="container">
             <div class="contents">
+                {% if name %}
+                    {{ name }}さんの投稿一覧
+                {% endif %}
                 {% for tweet in tweets %}
                     <div class="a_tweet" style="background-image: url({{tweet.image}});">
                         <div class="tweet_header">
@@ -47,7 +53,7 @@
                         <div class="tweet_bottom">
                             <p class="tweet_text">{{ tweet.text }}</p>
                             <div class="tweet_name">
-                                <p class="tweet_user_name">{{ tweet.user.username }}</p>
+                                <a class="tweet_user_name" href="{% url 'tweets:show' tweet.user.id %}">{{ tweet.user.username }}</a>
                             </div>
                         </div>
                     </div>

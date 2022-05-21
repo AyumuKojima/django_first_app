@@ -161,6 +161,10 @@
     padding-right: 5px;
 }
 
+.tweet_user_name:hover {
+    color: white;
+}
+
 .to-index-page {
     height: 50px;
     width: 220px;
