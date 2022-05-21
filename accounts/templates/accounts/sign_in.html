@@ -1,0 +1,22 @@
+<h1>ログイン画面</h1>
+<a href="{% url 'tweets:index' %}">トップページに戻る</a> <br>
+
+<form action="{% url 'accounts:log_in' %}" method="post">
+    {% csrf_token %}
+    {% if error_messages %}
+        <ul style="color: red;">
+            {% for error_message in error_messages %}
+                <li>{{ error_message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <div>
+        <label for="username">UserName</label> <br>
+        <input type="text" id="username" name="username" style="border: 2px solid red;">
+    </div>
+    <div>
+        <label for="password">Password</label> <br>
+        <input type="text" id="password" name="password" style="border: 2px solid blue;">
+    </div>
+    <input type="submit" value="Sign In">
+</form>
