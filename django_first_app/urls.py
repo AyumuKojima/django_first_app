@@ -18,6 +18,7 @@ from django.urls import path, include
 
 from tweets import views
 urlpatterns = [
+    path('accounts/', include('accounts.urls')),
     path('tweets/', include('tweets.urls')),
     path('admin/', admin.site.urls),
     path('', views.IndexView.as_view(), name='root')
