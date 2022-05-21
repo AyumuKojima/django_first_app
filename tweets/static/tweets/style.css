@@ -93,8 +93,8 @@
 
 .a_tweet {
     color: white;
-    width: 800px;
-    height: 534px;
+    width: 820px;
+    height: 480px;
     background-size: cover;
     display: flex;
     flex-direction: column;
@@ -164,7 +164,7 @@
 .to-index-page {
     height: 50px;
     width: 220px;
-    margin-top: 100px;
+    margin-top: 20px;
     color: white;
     border: 2px solid skyblue;
     border-radius: 10px;
@@ -192,7 +192,7 @@
 
 .fields {
     margin-top: 10px;
-    height: 450px;
+    height: 320px;
     width: 400px;
     display: flex;
     flex-direction: column;

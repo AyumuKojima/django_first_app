@@ -29,7 +29,7 @@ def create(request):
     if len(error_messages) != 0:
         return render(request, 'tweets/post.html', { 'error_messages': error_messages })
         
-    posted_tweet = Tweet(name=tweet_data['name'], image=tweet_data['image'], text=tweet_data['text'], pub_date=timezone.now())
+    posted_tweet = Tweet(image=tweet_data['image'], text=tweet_data['text'], pub_date=timezone.now(), user=request.user)
     posted_tweet.save()
     return HttpResponseRedirect(reverse('tweets:index'))
 
@@ -47,7 +47,6 @@ def destroy(request, tweet_id):
 def update(request, tweet_id):
     tweet = get_object_or_404(Tweet, pk=tweet_id)
     tweet_data = request.POST
-    tweet.name = tweet_data['name']
     tweet.image = tweet_data['image']
     tweet.text = tweet_data['text']
     error_messages = _set_error_messages(tweet_data)
@@ -65,10 +64,6 @@ def update(request, tweet_id):
 
 def _set_error_messages(tweet_data):
     error_messages = []
-    if tweet_data['name'] == '':
-        error_message = "Name can't be blank"
-        error_messages.append(error_message)
-
     if tweet_data['image'] == '':
         error_message = "Image URL can't be blank"
         error_messages.append(error_message)
