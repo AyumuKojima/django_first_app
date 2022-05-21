@@ -14,19 +14,25 @@
 
 .header-logo {
     height: 80%;
-    width: 200px;
-    font-weight: bold;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 25px;
-    margin-left: 30px;
+    width: 350px;
+    margin-left: 50px;
+}
+
+.logo-title {
+    height: 100%;
+    width: 60%;
     border: 3px solid antiquewhite;
     background-color: aliceblue;
     border-radius: 10px;
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 25px;
 }
 
 .header-menu {
     height: 100%;
-    width: 600px;
+    width: 350px;
+    margin-right: 50px;
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -42,12 +48,9 @@
 }
 
 .to-mypage {
-    height: 65%;
-    width: 130px;
-    border: 2px solid skyblue;
     border-radius: 5px;
-    color: white;
-    background-color: rgb(161, 211, 231);
+    color: blue;
+    font-size: 23px;
 }
 
 .to-logout-page {

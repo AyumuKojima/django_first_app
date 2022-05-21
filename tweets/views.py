@@ -6,12 +6,10 @@ from django.urls import reverse
 # Create your views here.
 from .models import Tweet
 
-class IndexView(generic.ListView):
-    template_name = 'tweets/index.html'
-    context_object_name = 'tweets'
-
-    def get_queryset(self):
-        return Tweet.objects.order_by('-pub_date')
+def index(request):
+    tweets = Tweet.objects.order_by('-pub_date')
+    print(request.user)
+    return render(request, 'tweets/index.html', {'tweets': tweets, 'user': request.user})
 
 class DetailView(generic.DetailView):
     model = Tweet
