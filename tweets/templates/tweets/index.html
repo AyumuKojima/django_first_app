@@ -3,31 +3,64 @@
 <link rel="stylesheet" type="text/css" href="{% static 'tweets/style.css' %}">
 
 <div class="header">
-    <a class="header-logo centering" href="{% url 'tweets:index' %}">Photo Tweet</a>
-    <div class="header-menu">
+    <div class="header-logo"><a class="logo-title centering" href="{% url 'tweets:index' %}">Photo Tweet</a></div>
+    {% if user.is_authenticated %}
         <a class="to-submit-page centering" href="{% url 'tweets:post' %}">投稿する</a>
-        <a class="to-mypage centering" href="#">マイページ</a>
-        <a class="to-logout-page centering" href="#">ログアウト</a>
+    {% endif %}
+    <div class="header-menu">
+        {% if user.is_authenticated %}
+            <a class="to-mypage centering" href="{% url 'tweets:show' user.id %}">{{user.username}}</a>
+            <a class="to-logout-page centering" href="{% url 'accounts:sign_out' %}">ログアウト</a>
+        {% else %}
+            <a class="to-signup-page centering" href="{% url 'accounts:sign_up' %}">新規登録</a>
+            <a class="to-signin-page centering" href="{% url 'accounts:sign_in' %}">ログイン</a>
+        {% endif %}
     </div>
 </div>
 <div class="main">
-    <div class="container">
-        <div class="contents">
-            {% for tweet in tweets %}
-                <div class="a_tweet" style="background-image: url({{tweet.image}});">
-                    <div class="tweet_header">
-                        <a class="tweet_btn" href="{% url 'tweets:detail' tweet.id %}">詳細</a>
-                    </div>
-                    <div class="tweet_bottom">
-                        <p class="tweet_text">{{ tweet.text }}</p>
-                        <div class="tweet_name">
-                            <p class="tweet_user_name">{{ tweet.name }}</p>
+    {% if tweets.count < 2 %}
+        <div class="a_container">
+            <div class="contents">
+                {% if name %}
+                    {{ name }}さんの投稿一覧
+                {% endif %}
+                {% for tweet in tweets %}
+                    <div class="a_tweet" style="background-image: url({{tweet.image}});">
+                        <div class="tweet_header">
+                            <a class="tweet_btn" href="{% url 'tweets:detail' tweet.id %}">詳細</a>
+                        </div>
+                        <div class="tweet_bottom">
+                            <p class="tweet_text">{{ tweet.text }}</p>
+                            <div class="tweet_name">
+                                <a class="tweet_user_name" href="{% url 'tweets:show' tweet.user.id %}">{{ tweet.user.username }}</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-            {% endfor %}
+                {% endfor %}
+            </div>
         </div>
-    </div>
+    {% else %}
+        <div class="container">
+            <div class="contents">
+                {% if name %}
+                    {{ name }}さんの投稿一覧
+                {% endif %}
+                {% for tweet in tweets %}
+                    <div class="a_tweet" style="background-image: url({{tweet.image}});">
+                        <div class="tweet_header">
+                            <a class="tweet_btn" href="{% url 'tweets:detail' tweet.id %}">詳細</a>
+                        </div>
+                        <div class="tweet_bottom">
+                            <p class="tweet_text">{{ tweet.text }}</p>
+                            <div class="tweet_name">
+                                <a class="tweet_user_name" href="{% url 'tweets:show' tweet.user.id %}">{{ tweet.user.username }}</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
     <div class="footer">
         <p>
             Copyright PicTweet 2019.

@@ -3,11 +3,18 @@
 <link rel="stylesheet" type="text/css" href="{% static 'tweets/style.css' %}">
 
 <div class="header">
-    <a class="header-logo centering" href="{% url 'tweets:index' %}">Photo Tweet</a>
-    <div class="header-menu">
+    <div class="header-logo"><a class="logo-title centering" href="{% url 'tweets:index' %}">Photo Tweet</a></div>
+    {% if user.is_authenticated %}
         <a class="to-submit-page centering" href="{% url 'tweets:post' %}">投稿する</a>
-        <a class="to-mypage centering" href="#">マイページ</a>
-        <a class="to-logout-page centering" href="#">ログアウト</a>
+    {% endif %}
+    <div class="header-menu">
+        {% if user.is_authenticated %}
+            <a class="to-mypage centering" href="#">{{user.username}}</a>
+            <a class="to-logout-page centering" href="{% url 'accounts:sign_out' %}">ログアウト</a>
+        {% else %}
+            <a class="to-signup-page centering" href="{% url 'accounts:sign_up' %}">新規登録</a>
+            <a class="to-signin-page centering" href="{% url 'accounts:sign_in' %}">ログイン</a>
+        {% endif %}
     </div>
 </div>
 <div class="main">
@@ -16,14 +23,16 @@
             <div class="a_tweet" style="background-image: url({{tweet.image}});">
                 <div class="tweet_header">
                     <div class="tweet_btns">
-                        <a class="tweet_btn" href="{% url 'tweets:edit' tweet.id %}">編集</a>
-                        <a class="tweet_btn" href="{% url 'tweets:destroy' tweet.id %}">削除</a>
+                        {% if user.is_authenticated and user == tweet.user %}
+                            <a class="tweet_btn" href="{% url 'tweets:edit' tweet.id %}">編集</a>
+                            <a class="tweet_btn" href="{% url 'tweets:destroy' tweet.id %}">削除</a>
+                        {% endif %}
                     </div>
                 </div>
                 <div class="tweet_bottom">
                     <p class="tweet_text">{{ tweet.text }}</p>
                     <div class="tweet_name">
-                        <p class="tweet_user_name">{{ tweet.name }}</p>
+                        <a class="tweet_user_name" href="#">{{ tweet.user.username }}</a>
                     </div>
                 </div>
             </div>

@@ -1,0 +1,20 @@
+<h1>ユーザー新規登録</h1>
+<a href="{% url 'tweets:index' %}">トップページに戻る</a> <br>
+<a href="{% url 'accounts:sign_in' %}">ログイン</a>
+
+<form action="{% url 'accounts:register' %}" method="post">
+    {% csrf_token %}
+    <div>
+        <label for="username">UserName</label> <br>
+        <input type="text" id="username" name="username" style="border: 2px solid red;">
+    </div>
+    <div>
+        <label for="email">Email</label> <br>
+        <input type="text" id="email" name="email" style="border: 2px solid green;">
+    </div>
+    <div>
+        <label for="password">Password</label> <br>
+        <input type="text" id="password" name="password" style="border: 2px solid blue;">
+    </div>
+    <input type="submit" value="Sign Up">
+</form>
